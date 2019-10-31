@@ -8,7 +8,10 @@ int main()
 {
 
     // Run similation
-    runSimulation(0,20,0.01);
+    runSimulation(0,20,0.1);
+/*     outputV_init(2,2);
+    outputV_wait(1);
+    outputV_destroy(); */
 
     return 0;
 

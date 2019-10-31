@@ -30,11 +30,10 @@ static pthread_t tinput; /*!< Thread for input generation */
 static pthread_t toutput; /*!< Thread for output generation */
 
 // k simulation instant and k mutex
-static sem_t _k_mutex; /*!< Semaphore to simulation time k protection */
+static pthread_mutex_t _k_mutex = PTHREAD_MUTEX_INITIALIZER; /*!< Semaphore to simulation time k protection */
 static double k = 0; /*!< Simulation time k */
 
 #define _MAX_TV_NSEC_VALUE             1000000000
-
 /**
  * @brief Input simulation
  * @param arg Array of arguments with any type. In this function, must be

@@ -28,8 +28,6 @@ void inputVector(double k)
     // Set input matrix
     inputV_set(inputV_now);
 
-
-    
 }
 
 void stateVector(double k, Matrix * inputVector_k, Matrix * stateMatrix)

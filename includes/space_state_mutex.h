@@ -17,7 +17,6 @@ with mutex protection
 
 #include "matrix.h"
 #include <time.h>
-#include <semaphore.h>
 #include <pthread.h>
 
 // 1 ms = 10^6 ns
@@ -28,8 +27,8 @@ with mutex protection
 static Matrix * _inputV_k; /*!< Input vector in instant k  */
 static Matrix * _outputV_k; /*!< Output vector in instant k  */
 // Input and Output semaphores for shared variables inputV and outputV
-static sem_t _inputV_mutex; /*!< Input mutex  */
-static sem_t _outputV_mutex; /*!< Output mutex  */
+static pthread_mutex_t _inputV_mutex = PTHREAD_MUTEX_INITIALIZER; /*!< Input mutex  */
+static pthread_mutex_t _outputV_mutex = PTHREAD_MUTEX_INITIALIZER; /*!< Output mutex  */
 
 // Input vector thread safety operations
 
@@ -81,6 +80,8 @@ void outputV_set(Matrix outputV);
  * @brief Print current Output vector values
  */
 void outputV_get(Matrix * outputV_k);
+
+void outputV_wait(long ms);
 
 /**
  * @brief Print current Output vector values
